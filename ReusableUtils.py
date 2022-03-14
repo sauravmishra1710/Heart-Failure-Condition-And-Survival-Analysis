@@ -110,7 +110,37 @@ class ReusableUtils:
                 ha = 'center',                # Horizontally center label
                 va = va)                      # Vertically align label differently for positive and negative values.
             
-            
+    def ConstructGoPieChart(self, build_sub_plots = False, num_sub_plots = 0, rows = 0, cols = 0, subplot_titles = [], 
+                        labels = [], values = [], sub_plot_names = [], export_to_png = False):
+    
+        idx = 0
+        fig = make_subplots(rows=rows, cols=cols, specs=[[{'type':'domain'}, {'type':'domain'}]],
+                               subplot_titles=subplot_titles)
+
+        for row in range(1, rows + 1):
+
+            for col in range (1, cols + 1):
+
+                if build_sub_plots:
+
+                    fig.add_trace(go.Pie(labels=labels[idx], values=values[idx], 
+                                         name=sub_plot_names[idx]), row=row, col=col)
+
+                    idx += 1
+
+        # Use `hole` to create a donut-like pie chart
+        fig.update_traces(hole=.4, hoverinfo="label+percent+name")
+        fig.update_layout(title_text="Hypertension Distribution & Survival Rate (SR)")
+
+        # show the interactive view
+        fig.show()
+        
+        self.InsertChartSeparator()
+        
+        # export to a png rendered format of the chart
+        if export_to_png:
+            fig.show("png")
+    
     def Generate_Model_Test_Classification_Report(model, X_test, y_test, model_name=""):
 
         '''
