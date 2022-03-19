@@ -12,7 +12,6 @@ from plotly.offline import plot, iplot, init_notebook_mode
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import plotly.express as px
-import plotly.graph_objs as gobj
 import plotly.figure_factory as ff
 
 from sklearn.preprocessing import RobustScaler, MinMaxScaler
@@ -25,7 +24,7 @@ from collections import Counter
 
 
 
-class ReusableUtils:
+class ReusableUtils():
     
     
     """
@@ -34,7 +33,10 @@ class ReusableUtils:
     
     """
     
-    def setNotebookConfigParams():
+    def __init__(self):
+        pass
+    
+    def setNotebookConfigParams(self):
         
         '''
         Sets the note book 
@@ -66,14 +68,14 @@ class ReusableUtils:
         # inline plotting with the Jupyter Notebook
         init_notebook_mode(connected=True)
         
-    def InsertChartSeparator():
+    def InsertChartSeparator(self):
     
         """Inserts a separator to demarcate between the dynamic interactive chart
         and the corresponding static chart in the png format."""
 
         print("                             ****************  STATIC PNG FORMAT  ****************") 
         
-    def add_data_labels(ax, spacing = 5):
+    def add_data_labels(self, ax, spacing = 5):
 
         """
         Custom Function to add 
@@ -110,8 +112,8 @@ class ReusableUtils:
                 ha = 'center',                # Horizontally center label
                 va = va)                      # Vertically align label differently for positive and negative values.
             
-    def ConstructGoPieChart(self, build_sub_plots = False, num_sub_plots = 0, rows = 0, cols = 0, subplot_titles = [], 
-                        labels = [], values = [], sub_plot_names = [], export_to_png = False):
+    def ConstructGoPieChart(self, build_sub_plots = False, rows = 0, cols = 0, subplot_titles = [],
+                            labels = [], values = [], sub_plot_names = [], title_text = "", export_to_png = False):
     
         idx = 0
         fig = make_subplots(rows=rows, cols=cols, specs=[[{'type':'domain'}, {'type':'domain'}]],
@@ -119,7 +121,7 @@ class ReusableUtils:
 
         for row in range(1, rows + 1):
 
-            for col in range (1, cols + 1):
+            for col in range(1, cols + 1):
 
                 if build_sub_plots:
 
@@ -141,7 +143,7 @@ class ReusableUtils:
         if export_to_png:
             fig.show("png")
     
-    def Generate_Model_Test_Classification_Report(model, X_test, y_test, model_name=""):
+    def Generate_Model_Test_Classification_Report(self, model, X_test, y_test, model_name=""):
 
         '''
         Purpose: 
@@ -277,7 +279,7 @@ class ReusableUtils:
         plt.show()
     
     
-    def plot_model_feature_importances(model):
+    def plot_model_feature_importances(self, model):
 
         '''
         Custom function to plot the 
