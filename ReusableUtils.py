@@ -132,7 +132,7 @@ class ReusableUtils():
 
         # Use `hole` to create a donut-like pie chart
         fig.update_traces(hole=.4, hoverinfo="label+percent+name")
-        fig.update_layout(title_text="Hypertension Distribution & Survival Rate (SR)")
+        fig.update_layout(title_text=title_text)
 
         # show the interactive view
         fig.show()
