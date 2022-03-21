@@ -73,13 +73,14 @@ class ReusableUtils():
         """Inserts a separator to demarcate between the dynamic interactive chart
         and the corresponding static chart in the png format."""
 
-        print("                             ****************  STATIC PNG FORMAT  ****************") 
+        print("                             ****************  STATIC PNG FORMAT  ****************")
+        
+        return None
         
     def add_data_labels(self, ax, spacing = 5):
 
         """
-        Custom Function to add 
-        data labels in the graph.
+        Custom Function to add data labels in the graph.
         
         """
         # For each bar: Place a label
@@ -112,36 +113,106 @@ class ReusableUtils():
                 ha = 'center',                # Horizontally center label
                 va = va)                      # Vertically align label differently for positive and negative values.
             
+        return None
+            
     def ConstructGoPieChart(self, build_sub_plots = False, rows = 0, cols = 0, subplot_titles = [],
                             labels = [], values = [], sub_plot_names = [], title_text = "", export_to_png = False):
     
-        idx = 0
-        fig = make_subplots(rows=rows, cols=cols, specs=[[{'type':'domain'}, {'type':'domain'}]],
-                               subplot_titles=subplot_titles)
+        '''
+        Purpose: 
+            Creates a pie charts of the specified data values.
+            
+            **NOTE: A pie chart (or a circle chart) is a circular statistical graphic, 
+            which is divided into slices to illustrate numerical proportion. 
+            
+        Parameters:
+            1. build_sub_plots - Boolean flag that informs if there is a need 
+            to create subplots (multiple pie charts).
+            1. hist_data - Use list of lists to plot multiple data sets on the same plot.
+            2. group_labels - Names for each data set.
+            3. title_text - main title of the plot figure.
+            4. histnorm - 'probability density' or 'probability'. Default = 'probability density'
+            5. export_to_png - Boolean flag to draw a static version of the plot in png format.
 
-        for row in range(1, rows + 1):
+        Return Value: 
+            NONE.
+        '''
+        
+        if build_sub_plots:
+            
+            idx = 0
+            fig = make_subplots(rows=rows, cols=cols, specs=[[{'type':'domain'}, {'type':'domain'}]],
+                                   subplot_titles=subplot_titles)
 
-            for col in range(1, cols + 1):
+            for row in range(1, rows + 1):
 
-                if build_sub_plots:
+                for col in range(1, cols + 1):
 
-                    fig.add_trace(go.Pie(labels=labels[idx], values=values[idx], 
-                                         name=sub_plot_names[idx]), row=row, col=col)
+                    if build_sub_plots:
 
-                    idx += 1
+                        fig.add_trace(go.Pie(labels=labels[idx], values=values[idx], 
+                                             name=sub_plot_names[idx]), row=row, col=col)
 
-        # Use `hole` to create a donut-like pie chart
-        fig.update_traces(hole=.4, hoverinfo="label+percent+name")
-        fig.update_layout(title_text=title_text)
+                        idx += 1
+                        
+            # Use `hole` to create a donut-like pie chart
+            fig.update_traces(hole=.4, hoverinfo="label+percent+name")
+            fig.update_layout(title_text=title_text)
 
+        else:
+            fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0, 0, 0, 0.1])])
+            fig.update_layout(title_text=title_text)
+        
         # show the interactive view
         fig.show()
         
-        self.InsertChartSeparator()
-        
         # export to a png rendered format of the chart
         if export_to_png:
+            self.InsertChartSeparator()            
             fig.show("png")
+            
+        return None
+            
+    def constructDistPlot(self, hist_data = [], group_labels = [], title_text = "", 
+                          histnorm='probability density', export_to_png = True):
+        
+        '''
+        Purpose: 
+            Creates a distribution plot of the specified data/series.
+            
+            **NOTE: The distplot represents the univariate distribution of data i.e. 
+            data distribution of a variable against the density distribution. 
+            
+        Parameters:
+            1. hist_data - Use list of lists to plot multiple data sets on the same plot.
+            2. group_labels - Names for each data set.
+            3. title_text - main title of the plot figure.
+            4. histnorm - 'probability density' or 'probability'. Default = 'probability density'
+            5. export_to_png - Boolean flag to draw a static version of the plot in png format.
+
+        Return Value: 
+            NONE.
+        '''
+    
+        colors = ['rgb(0, 0, 100)', 'rgb(0, 200, 200)']
+
+        fig = ff.create_distplot(hist_data=hist_data,
+                                 group_labels=group_labels,
+                                 bin_size=[1, 1], 
+                                 colors = colors, 
+                                 histnorm=histnorm)
+        
+        fig.update_layout(title_text = title_text)
+
+        # show the interactive view
+        fig.show()
+
+        # export to a png rendered format of the chart
+        if export_to_png:
+            self.InsertChartSeparator()
+            fig.show("png")
+            
+        return None
     
     def Generate_Model_Test_Classification_Report(self, model, X_test, y_test, model_name=""):
 
@@ -277,14 +348,25 @@ class ReusableUtils():
         plt.subplots_adjust(top=0.95) 
         plt.tight_layout()
         plt.show()
-    
+        
+        return None
     
     def plot_model_feature_importances(self, model):
 
         '''
-        Custom function to plot the 
-        feature importances of the classifier.
+        Purpose: 
+            Custom function to plot the feature importances of the classifier.
+            
+            **NOTE: Feature importances specify how much each feature is contributing 
+            towards the final prediction value/results. 
+            
+        Parameters:
+            1. model - the model whose feature importances are to be plotted.
+
+        Return Value: 
+            NONE.
         '''
+        
         fig = plt.figure()
 
         # get the feature importance of the classifier 'model'
@@ -297,3 +379,5 @@ class ReusableUtils():
         plt.title('Classifier Feature Importance', fontdict = {'fontsize' : 20})
         plt.xticks(rotation = 60)
         plt.show()
+        
+        return None
