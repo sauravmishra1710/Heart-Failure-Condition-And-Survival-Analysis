@@ -78,9 +78,27 @@ class ReusableUtils():
         return None
         
     def add_data_labels(self, ax, spacing = 5):
+        '''
+        Purpose: 
+            Custom Function to add data labels in the graph.
+            
+            **NOTE: A pie chart (or a circle chart) is a circular statistical graphic, 
+            which is divided into slices to illustrate numerical proportion. 
+            
+        Parameters:
+            1. build_sub_plots - Boolean flag that informs if there is a need 
+            to create subplots (multiple pie charts).
+            1. hist_data - Use list of lists to plot multiple data sets on the same plot.
+            2. group_labels - Names for each data set.
+            3. title_text - main title of the plot figure.
+            4. histnorm - 'probability density' or 'probability'. Default = 'probability density'
+            5. export_to_png - Boolean flag to draw a static version of the plot in png format.
 
+        Return Value: 
+            NONE.
+        '''
         """
-        Custom Function to add data labels in the graph.
+        
         
         """
         # For each bar: Place a label
@@ -156,7 +174,7 @@ class ReusableUtils():
                         idx += 1
                         
             # Use `hole` to create a donut-like pie chart
-            fig.update_traces(hole=.4, hoverinfo="label+percent+name")
+            fig.update_traces(hole=.3, hoverinfo="label+percent+name")
             fig.update_layout(title_text=title_text)
 
         else:
@@ -203,6 +221,56 @@ class ReusableUtils():
                                  histnorm=histnorm)
         
         fig.update_layout(title_text = title_text)
+
+        # show the interactive view
+        fig.show()
+
+        # export to a png rendered format of the chart
+        if export_to_png:
+            self.InsertChartSeparator()
+            fig.show("png")
+            
+        return None
+    
+    def constructPxHistogram(self, data_frame, x, color, marginal, 
+                             hover_data, title, export_to_png = False):
+    
+        '''
+        Purpose: 
+            Creates a histogram distribution plot of the specified data/series.
+
+            **NOTE: A histogram is representation of the distribution of numerical data, 
+            where the data are binned and the count for each bin is represented. 
+            In a histogram, rows of `data_frame` are grouped together into a
+            rectangular mark to visualize the 1D distribution of an aggregate
+            function `histfunc` (e.g. the count or sum) of the value `y` (or `x` if
+            `orientation` is `'h'`). 
+            Ref - DocString for px.histogram
+
+        Parameters:
+            1. data_frame - DataFrame or array-like or dict data required for the histogram.
+            2. x - Names for each data set. str or int or Series or array-like
+                   Either a name of a column in `data_frame`, or a pandas Series or
+                   array_like object. 
+            3. color - str or int or Series or array-like
+                       Either a name of a column in `data_frame`, or a pandas Series or
+                       array_like object. Values from this column or array_like are used to
+                       assign color to marks.
+            4. marginal - (str) One of `'rug'`, `'box'`, `'violin'`, or `'histogram'`. If set, a
+                           subplot is drawn alongside the main plot, visualizing the distribution.
+            5. title - Colors for traces.
+            6. export_to_png - Boolean flag to draw a static version of the plot in png format.
+
+        Return Value: 
+            NONE.
+        '''
+
+        fig = px.histogram(data_frame = data_frame,
+                           x = x, 
+                           color = color,
+                           marginal = marginal, 
+                           hover_data = data_frame.columns,
+                           title = title)
 
         # show the interactive view
         fig.show()
