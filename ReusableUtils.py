@@ -173,8 +173,8 @@ class ReusableUtils():
             
         return None
             
-    def constructDistPlot(self, hist_data = [], group_labels = [], title_text = "", 
-                          histnorm='probability density', export_to_png = True):
+    def constructDistPlot(self, hist_data = [], group_labels = [], title_text = "", histnorm='probability density', 
+                          colors = [], bin_size=[50, 50], export_to_png = True):
         
         '''
         Purpose: 
@@ -188,17 +188,17 @@ class ReusableUtils():
             2. group_labels - Names for each data set.
             3. title_text - main title of the plot figure.
             4. histnorm - 'probability density' or 'probability'. Default = 'probability density'
-            5. export_to_png - Boolean flag to draw a static version of the plot in png format.
+            5. colors - Colors for traces.
+            6. bin_size - Size of histogram bins.
+            7. export_to_png - Boolean flag to draw a static version of the plot in png format.
 
         Return Value: 
             NONE.
         '''
     
-        colors = ['rgb(0, 0, 100)', 'rgb(0, 200, 200)']
-
         fig = ff.create_distplot(hist_data=hist_data,
                                  group_labels=group_labels,
-                                 bin_size=[1, 1], 
+                                 bin_size=bin_size, 
                                  colors = colors, 
                                  histnorm=histnorm)
         
