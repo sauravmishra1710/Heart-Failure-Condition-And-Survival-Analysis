@@ -282,6 +282,105 @@ class ReusableUtils():
             
         return None
     
+    def constructNotchedBoxPlots(self, data_frame, x, y, hover_name, color, title_text,
+                                 points = 'all', export_to_png = False):
+        
+        '''
+        Purpose: 
+            Creates a notched box plot distribution of the specified data/series.
+
+            **NOTE: Notched box plots apply a "notch" or narrowing of the box around the median. 
+              Notches are useful in offering a rough guide to significance of difference of medians; 
+              if the notches of two boxes do not overlap, this offers evidence of a statistically significant 
+              difference between the medians.
+              Ref - https://en.wikipedia.org/wiki/Box_plot#Variations
+
+
+        Parameters:
+            1. data_frame - DataFrame or array-like or dict data required for the histogram.
+            2. x - (str or int or Series or array-like) Either a name of a column in `data_frame`, 
+                   or a pandas Series or array_like object. 
+            3. y - (str or int or Series or array-like) – Either a name of a column in data_frame, 
+                    or a pandas Series or array_like object. Values from this column or array_like are used to 
+                    position marks along the y axis in cartesian coordinates. 
+            4. hover_name - (str or int or Series or array-like) – Either a name of a column in data_frame, 
+                            or a pandas Series or array_like object. Values from this column or array_like 
+                            appear in bold in the hover tooltip.
+            5. color - Either a name of a column in data_frame, or a pandas Series or array_like object. 
+                       Values from this column or array_like are used to assign color to marks.
+            6. title_text - Title of the plot figure.
+            7. export_to_png - Boolean flag to draw a static version of the plot in png format.
+            
+            Ref: https://plotly.github.io/plotly.py-docs/generated/plotly.express.box.html
+
+        Return Value: 
+            NONE.
+        '''
+        
+        fig = px.box(data_frame, 
+                     x = x, 
+                     y = y, 
+                     points = points, 
+                     hover_name = hover_name, 
+                     color = color, 
+                     notched=True)
+
+        fig.update_layout(title_text = title_text)
+
+        # show the interactive view
+        fig.show()
+
+        # export to a png rendered format of the chart
+        if export_to_png:
+            self.InsertChartSeparator()
+            fig.show("png")
+            
+        return None
+    
+    def plotUnivariateAnalysis(self, data_frame, category_list, rows, cols):
+        
+        '''
+        Purpose: 
+            Plots the univariate analysis of the given categorical variables.
+
+        Parameters:
+            1. data_frame = the master dataframe.
+            1. category_list - the list of categorical variables
+            5. rows - Number of rows in the subplots.
+            6. cols - Number of columns in the subplots.
+
+        Return Value: 
+            NONE.
+        '''
+    
+        category_list = ['anaemia', 'high_blood_pressure', 'diabetes', 'sex', 'smoking']
+        counter = 1
+
+        plt.figure(figsize = (15, 15))
+
+        for col_list in category_list:
+
+            series = round(((data_frame[col_list].value_counts(dropna = False))/
+                            (len(data_frame[col_list])) * 100), 2)
+
+            plt.subplot(rows, cols, counter)
+            ax = sns.barplot(x = series.index, y = series.values, order = series.sort_index().index)
+            plt.xlabel(col_list, labelpad = 15)
+            plt.ylabel('Percentage Rate', labelpad = 10)
+
+            # Call Custom Function
+            self.add_data_labels(ax)
+
+            counter += 1
+
+        del category_list, counter, ax
+
+        plt.subplots_adjust(hspace = 0.3)
+        plt.subplots_adjust(wspace = 0.5)
+        plt.show()
+
+        return None
+    
     def Generate_Model_Test_Classification_Report(self, model, X_test, y_test, model_name=""):
 
         '''
