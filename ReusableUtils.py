@@ -337,7 +337,7 @@ class ReusableUtils():
             
         return None
     
-    def plotUnivariateAnalysis(self, data_frame, category_list, rows, cols):
+    def plotUnivariateAnalysis(self, data_frame, category_list, rows, cols, figsize = (5, 5)):
         
         '''
         Purpose: 
@@ -345,18 +345,18 @@ class ReusableUtils():
 
         Parameters:
             1. data_frame = the master dataframe.
-            1. category_list - the list of categorical variables
-            5. rows - Number of rows in the subplots.
-            6. cols - Number of columns in the subplots.
+            2. category_list - the list of categorical variables
+            3. rows - Number of rows in the subplots.
+            4. cols - Number of columns in the subplots.
+            5. figsize - Size of the plot figure.
 
         Return Value: 
             NONE.
         '''
     
-        category_list = ['anaemia', 'high_blood_pressure', 'diabetes', 'sex', 'smoking']
         counter = 1
 
-        plt.figure(figsize = (15, 15))
+        plt.figure(figsize = figsize)
 
         for col_list in category_list:
 
@@ -377,6 +377,27 @@ class ReusableUtils():
 
         plt.subplots_adjust(hspace = 0.3)
         plt.subplots_adjust(wspace = 0.5)
+        plt.show()
+
+        return None
+    
+    def plotDataCorrelationHeatMap(self, data_frame, fig_size = (15,10)): 
+    
+        '''
+        Purpose:
+            Plots the data / feature correlation heatmap.
+
+        Parameters:
+            1. data_frame = the master dataframe.
+            2. figsize - Size of the plot figure. Default Size is set to (15, 10)
+
+        Return Value: 
+            NONE.
+
+        '''
+
+        fig, ax = plt.subplots(figsize = fig_size)
+        sns.heatmap(data_frame.corr(), annot = True, linewidths = .5, ax = ax)
         plt.show()
 
         return None
