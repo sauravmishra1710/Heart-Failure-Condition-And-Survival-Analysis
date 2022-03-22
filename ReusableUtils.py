@@ -337,7 +337,7 @@ class ReusableUtils():
             
         return None
     
-    def plotUnivariateAnalysis(self, data_frame, category_list, rows, cols, figsize = (5, 5)):
+    def plotUnivariateAnalysis(self, data_frame, category_list, rows, cols, figsize = (8, 8)):
         
         '''
         Purpose: 
@@ -392,15 +392,17 @@ class ReusableUtils():
             2. figsize - Size of the plot figure. Default Size is set to (15, 10)
 
         Return Value: 
-            NONE.
+            corr -  The data correlation matrix.
 
         '''
 
         fig, ax = plt.subplots(figsize = fig_size)
-        sns.heatmap(data_frame.corr(), annot = True, linewidths = .5, ax = ax)
+        
+        corr = data_frame.corr()
+        sns.heatmap(corr, annot = True, linewidths = .5, ax = ax)
         plt.show()
 
-        return None
+        return corr
     
     def Generate_Model_Test_Classification_Report(self, model, X_test, y_test, model_name=""):
 
