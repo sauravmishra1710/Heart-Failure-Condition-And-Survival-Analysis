@@ -541,7 +541,7 @@ class ReusableUtils():
         
         return None
     
-    def plot_model_feature_importances(self, model):
+    def plot_model_feature_importances(self, X_train, model):
 
         '''
         Purpose: 
@@ -552,6 +552,7 @@ class ReusableUtils():
             
         Parameters:
             1. model - the model whose feature importances are to be plotted.
+            2. X_train - Training dataset.
 
         Return Value: 
             NONE.
