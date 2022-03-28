@@ -146,11 +146,11 @@ class ReusableUtils():
         Parameters:
             1. build_sub_plots - Boolean flag that informs if there is a need 
             to create subplots (multiple pie charts).
-            1. hist_data - Use list of lists to plot multiple data sets on the same plot.
-            2. group_labels - Names for each data set.
-            3. title_text - main title of the plot figure.
-            4. histnorm - 'probability density' or 'probability'. Default = 'probability density'
-            5. export_to_png - Boolean flag to draw a static version of the plot in png format.
+            2. hist_data - Use list of lists to plot multiple data sets on the same plot.
+            3. group_labels - Names for each data set.
+            4. title_text - main title of the plot figure.
+            5. histnorm - 'probability density' or 'probability'. Default = 'probability density'
+            6. export_to_png - Boolean flag to draw a static version of the plot in png format.
 
         Return Value: 
             NONE.
@@ -409,6 +409,7 @@ class ReusableUtils():
         '''
         Purpose: 
             Generate the consolidated test classification report. 
+            A one-stop function to generate all the relevant model evaluation metrics. 
             The report consists of the following classification results & metrics -
                 1. Confusion Matrix
                 2. Classification Report
