@@ -78,6 +78,7 @@ class ReusableUtils():
         return None
         
     def add_data_labels(self, ax, spacing = 5):
+        
         '''
         Purpose: 
             Custom Function to add data labels in the graph.
@@ -97,10 +98,7 @@ class ReusableUtils():
         Return Value: 
             NONE.
         '''
-        """
-        
-        
-        """
+
         # For each bar: Place a label
         for rect in ax.patches:
             # Get X and Y placement of label from rect.
@@ -357,7 +355,7 @@ class ReusableUtils():
         counter = 1
 
         plt.figure(figsize = figsize)
-
+        
         for col_list in category_list:
 
             series = round(((data_frame[col_list].value_counts(dropna = False))/
@@ -365,16 +363,19 @@ class ReusableUtils():
 
             plt.subplot(rows, cols, counter)
             ax = sns.barplot(x = series.index, y = series.values, order = series.sort_index().index)
+            sns.despine(bottom = True, left = True)
             plt.xlabel(col_list, labelpad = 15)
             plt.ylabel('Percentage Rate', labelpad = 10)
 
+            ax.grid(False)
+            
             # Call Custom Function
             self.add_data_labels(ax)
 
             counter += 1
 
         del category_list, counter, ax
-
+        
         plt.subplots_adjust(hspace = 0.3)
         plt.subplots_adjust(wspace = 0.5)
         plt.show()
