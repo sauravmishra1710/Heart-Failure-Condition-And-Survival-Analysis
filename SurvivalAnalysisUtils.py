@@ -1,18 +1,24 @@
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt 
+import seaborn as sns
+
 from lifelines import KaplanMeierFitter
 
-class ReusableUtils():
+class SurvivalAnalysisUtils():
     
     
     """
-    Module of reusable function and utilities that 
-    can be reused across notebooks.
+    Module of reusable function and utilities for
+    survival analysis.
     
     """
     
     def __init__(self):
         pass
     
-    def PlotKaplanMeierEstimatesForCategoricalVariables(data = None, categorical_columns=[]):
+    def PlotKaplanMeierEstimatesForCategoricalVariables(self, data = None, categorical_columns=[]):
     
         '''
         Purpose: 
@@ -81,7 +87,7 @@ class ReusableUtils():
         
         return None
     
-    def PlotKaplanMeierEstimatesForContinuousVariables(data = None, contituous_columns=[]):
+    def PlotKaplanMeierEstimatesForContinuousVariables(self, data = None, contituous_columns=[]):
     
         '''
         Purpose: 
