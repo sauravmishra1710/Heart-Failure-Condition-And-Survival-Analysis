@@ -6,7 +6,7 @@ import seaborn as sns
 
 from lifelines import KaplanMeierFitter
 
-class SurvivalAnalysisUtils():
+class KaplanMeierUtils():
     
     
     """
@@ -87,7 +87,7 @@ class SurvivalAnalysisUtils():
         
         return None
     
-    def PlotKaplanMeierEstimatesForContinuousVariables(self, data = None, contituous_columns=[]):
+    def PlotKaplanMeierEstimatesForContinuousVariables(self, data = None, continuous_columns=[]):
     
         '''
         Purpose: 
@@ -102,7 +102,7 @@ class SurvivalAnalysisUtils():
 
         Parameters:
             1. data: the dataset.
-            2. contituous_columns: all the continuous data features as a list.
+            2. continuous_columns: all the continuous data features as a list.
 
         Return Value: 
             NONE.
@@ -111,7 +111,7 @@ class SurvivalAnalysisUtils():
             https://lifelines.readthedocs.io/en/latest/fitters/univariate/KaplanMeierFitter.html#lifelines.fitters.kaplan_meier_fitter.KaplanMeierFitter
         '''
 
-        continuousData = data.loc(axis=1)[contituous_columns]
+        continuousData = data.loc(axis=1)[continuous_columns]
 
         fig, ax = plt.subplots(nrows=3, ncols=3, figsize=(18,15))
         plt.tight_layout(pad=5.0)
@@ -150,7 +150,7 @@ class SurvivalAnalysisUtils():
 
         data_split_points = [[30.0,60.0,80.0,100.0],3,[0,30.0,45.0,100.0],3,3,3,3]
 
-        for idx, feature in enumerate(contituous_columns):
+        for idx, feature in enumerate(continuous_columns):
 
             cont_fits = km_fits(data = data, 
                                 curr_Feature = feature,
