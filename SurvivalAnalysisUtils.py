@@ -133,14 +133,14 @@ class KaplanMeierUtils():
             '''
 
             bins = pd.cut(x=data[curr_Feature],bins=split_points)
-            range_hue = np.unique(bins)
-            hue_group = str(curr_Feature) + "_group"
-            data[hue_group] = pd.cut(x=data[curr_Feature], bins=split_points)
+            curr_feature_range = np.unique(bins)
+            curr_feature_group = str(curr_Feature) + "_group"
+            data[curr_feature_group] = pd.cut(x=data[curr_Feature], bins=split_points)
 
-            X = [data[data[hue_group] == bin_range]['time'] for bin_range in range_hue]      
-            Y = [data[data[hue_group] == bin_range]['DEATH_EVENT'] for bin_range in range_hue]        
-            fit_label = [str(str(range_hue_i).replace(',',' -').replace(']',')')) for range_hue_i in range_hue]        
-            data.drop(hue_group, axis=1, inplace=True)
+            X = [data[data[curr_feature_group] == bin_range]['time'] for bin_range in curr_feature_range]      
+            Y = [data[data[curr_feature_group] == bin_range]['DEATH_EVENT'] for bin_range in curr_feature_range]        
+            fit_label = [str(str(feature_range_i).replace(',',' -').replace(']',')')) for feature_range_i in curr_feature_range]        
+            data.drop(curr_feature_group, axis=1, inplace=True)
 
             kmfits = [KaplanMeierFitter().fit(durations = x_i, 
                                               event_observed = y_i, 
@@ -148,7 +148,7 @@ class KaplanMeierUtils():
 
             return kmfits
 
-        data_split_points = [[30.0,60.0,80.0,100.0],3,[0,30.0,45.0,100.0],3,3,3,3]
+        data_split_points = [[39.0,60.0,80.0,100.0],3,[0,30.0,45.0,100.0],3,3,3,3]
 
         for idx, feature in enumerate(continuous_columns):
 
