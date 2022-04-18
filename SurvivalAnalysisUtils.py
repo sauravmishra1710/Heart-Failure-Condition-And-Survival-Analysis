@@ -61,11 +61,11 @@ class KaplanMeierUtils():
                 kmfits: the Kaplan-Meier estimates.
             '''
 
-            range_hue = np.unique(data[curr_Feature])
+            curr_feature_range = np.unique(data[curr_Feature])
 
-            X = [data[data[curr_Feature]==x]['time'] for x in range_hue]
-            Y = [data[data[curr_Feature]==y]['DEATH_EVENT'] for y in range_hue]
-            fit_label = [str(curr_Feature + ': ' + str(range_hue_i)) for range_hue_i in range_hue]
+            X = [data[data[curr_Feature]==x]['time'] for x in curr_feature_range]
+            Y = [data[data[curr_Feature]==y]['DEATH_EVENT'] for y in curr_feature_range]
+            fit_label = [str(curr_Feature + ': ' + str(feature_range_i)) for feature_range_i in curr_feature_range]
 
             kmfits = [KaplanMeierFitter().fit(durations = x_i, 
                                               event_observed = y_i, 
