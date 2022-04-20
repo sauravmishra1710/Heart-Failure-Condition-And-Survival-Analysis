@@ -78,7 +78,7 @@ class KaplanMeierUtils():
                                curr_Feature = feature)
 
             [x.plot(title=feature, ylabel="Survival Probability", xlabel="Days",
-                    ylim=(0,1.1), xlim=(0,290),
+                    ylim=(0,1.1), xlim=(0,300),
                     ci_alpha=0.1, ax=ax.flatten()[idx]) for x in cat_fits]
 
         ax.flatten()[-1].set_visible(False)
@@ -157,7 +157,7 @@ class KaplanMeierUtils():
                                 split_points = data_split_points[idx])
 
             [x.plot(title=feature, ylabel="Survival Probability", xlabel="Days",
-                    ylim=(0,1.1), xlim=(0,290), ci_alpha=0.1, 
+                    ylim=(0,1.1), xlim=(0,300), ci_alpha=0.1, 
                     ax=ax.flatten()[idx]) for x in cont_fits]
 
         ax.flatten()[-1].set_visible(False)
