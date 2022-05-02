@@ -577,15 +577,16 @@ class ReusableUtils():
         
         return None
     
-    def display_dataframe_side_by_side(self, dataframes:list, captions:list, master_caption = None, tablespacing=5):
+    def display_dataframe_side_by_side(self, dataframes:list, table_captions:list, master_caption = None, tablespacing=5):
     
         """
         Purpose:
-            Display tables side by side to save vertical space
+            Display the dataframes as html tables side by side 
+            to save vertical space.
 
         Parameters:
             dataframes: list of pandas.DataFrame
-            captions: list of table captions
+            table_captions: list of table captions
             tablespacing: table separator to differentiate the tables/dataframes. 
                           The vertical spacing between tables..
 
@@ -614,7 +615,7 @@ class ReusableUtils():
                       )
                  ]
 
-        for (caption, df) in zip(captions, dataframes):
+        for (df, caption) in zip(dataframes, table_captions):
             output += df.style.set_table_attributes("style='display:inline;'")\
             .set_caption(caption)\
             .set_table_styles(styler)\
