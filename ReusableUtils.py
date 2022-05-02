@@ -14,6 +14,8 @@ from plotly.subplots import make_subplots
 import plotly.express as px
 import plotly.figure_factory as ff
 
+from IPython.display import display_html 
+
 from sklearn.preprocessing import RobustScaler, MinMaxScaler
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
 from sklearn.metrics import recall_score, accuracy_score, confusion_matrix, f1_score, matthews_corrcoef
@@ -573,4 +575,53 @@ class ReusableUtils():
         plt.xticks(rotation = 60)
         plt.show()
         
+        return None
+    
+    def display_dataframe_side_by_side(self, dataframes:list, captions:list, master_caption = None, tablespacing=5):
+    
+        """
+        Purpose:
+            Display tables side by side to save vertical space
+
+        Parameters:
+            dataframes: list of pandas.DataFrame
+            captions: list of table captions
+            tablespacing: table separator to differentiate the tables/dataframes. 
+                          The vertical spacing between tables..
+
+        Returns:
+            NONE
+
+        Reference:
+            https://stackoverflow.com/questions/38783027/jupyter-notebook-display-two-pandas-tables-side-by-side
+        """
+
+        output = ""
+        space_char = "\xa0"
+        
+        if master_caption is not None:
+            master_caption = '<h2 style="color: black;">' + master_caption + '</h2>'
+        
+        display_html(master_caption, raw = True)
+        
+        # table caption styler
+        styler = [dict(selector="caption",
+                       props=[("text-align", "left"),
+                              ("font-size", "175%"),
+                              ("text-decoration", "underline"),
+                              ("color", 'red')
+                             ]
+                      )
+                 ]
+
+        for (caption, df) in zip(captions, dataframes):
+            output += df.style.set_table_attributes("style='display:inline;'")\
+            .set_caption(caption)\
+            .set_table_styles(styler)\
+            ._repr_html_()
+            
+            output += tablespacing * space_char
+            
+        display_html(output, raw = True)
+
         return None
