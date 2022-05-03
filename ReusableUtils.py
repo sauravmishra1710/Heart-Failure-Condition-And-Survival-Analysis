@@ -608,12 +608,10 @@ class ReusableUtils():
         # table caption styler
         styler = [dict(selector="caption",
                        props=[("text-align", "left"),
-                              ("font-size", "175%"),
+                              ("font-size", "125%"),
                               ("text-decoration", "underline"),
-                              ("color", 'red')
-                             ]
-                      )
-                 ]
+                              ("color", 'red')]), 
+          dict(selector="td", props=[('font-size', '100%')])]
 
         for (df, caption) in zip(dataframes, table_captions):
             output += df.style.set_table_attributes("style='display:inline;'")\
