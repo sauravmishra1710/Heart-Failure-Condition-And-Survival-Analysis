@@ -15,7 +15,7 @@ management wherein a machine learning model can be of great help.
 
  ## Dataset
  
- Ahmad, Tanvir; Munir, Assia; Bhatti, Sajjad Haider; Aftab, Muhammad; Ali Raza, Muhammad (2017): DATA_MINIMAL.. PLOS ONE. Dataset.   https://doi.org/10.1371/journal.pone.0181001.s001 
+ Ahmad, Tanvir; Munir, Assia; Bhatti, Sajjad Haider; Aftab, Muhammad; Ali Raza, Muhammad (2017): DATA_MINIMAL.. PLOS ONE. Dataset.   https://doi.org/10.1371/journal.pone.0181001.s001 </br>
  Link: https://plos.figshare.com/articles/dataset/Survival_analysis_of_heart_failure_patients_A_case_study/5227684/1
  
  ## Dataset Description
