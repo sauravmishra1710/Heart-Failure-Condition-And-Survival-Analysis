@@ -1,4 +1,4 @@
-# Heart-Failure-Prediction
+# A Comparative Study for Time-to-Event Analysis and Survival Prediction for Heart Failure Condition using Machine Learning Techniques
 
 ![alt text](https://github.com/sauravmishra1710/Heart-Failure-Condition-And-Survival-Analysis/blob/master/Res/heart_anatomy.jpg)
 
