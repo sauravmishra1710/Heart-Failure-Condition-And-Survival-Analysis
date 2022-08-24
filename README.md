@@ -45,6 +45,10 @@ DEATH EVENT<br>(TARGET)|	If the patient died during the follow-up period|	Boolea
 
 **NOTE: mcg/L: micrograms per liter. mL: microliter. mEq/L: milliequivalents per litre**
  
+ ## PAPERS WITH CODE
+
+Link: [https://paperswithcode.com/paper/malaria-parasite-detection-using-efficient](https://paperswithcode.com/paper/a-comparative-study-for-time-to-event)
+
  ## <h2 id="citeAs">HOW TO CITE</h2>
  If you find this work helpful for your study, please cite the paper as follows -</br>
  
