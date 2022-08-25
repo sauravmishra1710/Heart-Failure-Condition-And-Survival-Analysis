@@ -50,6 +50,6 @@ DEATH EVENT<br>(TARGET)|	If the patient died during the follow-up period|	Boolea
 Link: [https://paperswithcode.com/paper/malaria-parasite-detection-using-efficient](https://paperswithcode.com/paper/a-comparative-study-for-time-to-event)
 
  <h2 id="citeAs">HOW TO CITE</h2>
- If you find this work helpful for your study, please cite the paper as follows -</br>
+ If you find this work helpful for your study, please cite the paper as follows - </br></br>
  
 Mishra, S. (2022) “A Comparative Study for Time-to-Event Analysis and Survival Prediction for Heart Failure Condition using Machine Learning Techniques”, Journal of Electronics, Electromedical Engineering, and Medical Informatics, 4(3), pp. 115-134. doi: 10.35882/jeeemi.v4i3.225.
