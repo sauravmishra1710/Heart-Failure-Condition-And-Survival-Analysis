@@ -21,11 +21,7 @@ Heart Failure, an ailment in which the heart isn’t functioning as effectively 
  
  The dataset contains cardiovascular medical records taken from 299 patients. The patient cohort comprised of 105 women and 194 men between 40 and 95 years in age. All patients in the cohort were diagnosed with the systolic dysfunction of the left ventricle and had previous history of heart failures. As a result of their previous history every patient was classified into either class III or class IV of New York Heart Association (NYHA) classification for various stages of heart failure.
  
- #### SOURCE
- Ahmad, Tanvir; Munir, Assia; Bhatti, Sajjad Haider; Aftab, Muhammad; Ali Raza, Muhammad (2017): DATA_MINIMAL.. PLOS ONE. Dataset-   https://doi.org/10.1371/journal.pone.0181001.s001 </br>
- Link: https://plos.figshare.com/articles/dataset/Survival_analysis_of_heart_failure_patients_A_case_study/5227684/1
- 
- #### DESCRIPTION
+ #### FEATURE DESCRIPTION
  
  Feature | Explanation | Measurement	| Range
 ------------- | ------------- |------------- | -------------
@@ -44,6 +40,10 @@ Time|	Follow-up period|	Days|	[4,...,285]
 DEATH EVENT<br>(TARGET)|	If the patient died during the follow-up period|	Boolean|	0, 1
 
 **NOTE: mcg/L: micrograms per liter. mL: microliter. mEq/L: milliequivalents per litre**
+
+#### SOURCE
+ Ahmad, Tanvir; Munir, Assia; Bhatti, Sajjad Haider; Aftab, Muhammad; Ali Raza, Muhammad (2017): DATA_MINIMAL.. PLOS ONE. Dataset-   https://doi.org/10.1371/journal.pone.0181001.s001 </br>
+ Link: https://plos.figshare.com/articles/dataset/Survival_analysis_of_heart_failure_patients_A_case_study/5227684/1
  
  ## PAPERS WITH CODE
 
